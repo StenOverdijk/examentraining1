@@ -13,30 +13,31 @@
                 <h1 class="mt-5">Add Kamerdata</h1>
                 <form method="POST">
                     <div class="mb-3">
-                        <label for="room_number" class="form-label">Kamer</label>
-                        <input type="text" class="form-control" id="room_number" name="room_number" required>
+                        <label for="kamernummer" class="form-label">Kamer Nummer</label>
+                        <input type="text" class="form-control" id="kamernummer" name="kamernummer" required>
                     </div>
                     <div class="mb-3">
-                        <label for="capacity" class="form-label">Capacitiet</label>
-                        <input type="number" class="form-control" id="capacity" name="capacity" required>
+                        <label for="naam" class="form-label">Naam</label>
+                        <input type="text" class="form-control" id="naam" name="naam" required>
                     </div>
                     <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select class="form-control" id="status" name="status">
-                            <option value=""></option>
-                            <option value="Vrij">Vrij</option>
-                            <option value="Gereserveerd">Gereserveerd</option>
-                            <option value="Bezet">Bezet</option>
-                            <option value="Onbeschikbaar">Onbeschikbaar</option>
+                        <label for="capaciteit" class="form-label">Capacitiet</label>
+                        <input type="number" class="form-control" id="capaciteit" name="capaciteit" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tafelopstelling" class="form-label">Tafelopstelling</label>
+                        <input type="text" class="form-control" id="tafelopstelling" name="tafelopstelling">
+                    </div>
+                    <div class="mb-3">
+                        <label for="beeldscherm" class="form-label">Beeldscherm</label>
+                        <input type="text" class="form-control" id="beeldscherm" name="beeldscherm">
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="vergader">Vergader</option>
+                            <option value="kantoor">Kantoor</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="screen" class="form-label">Beeldscherm</label>
-                        <input type="text" class="form-control" id="screen" name="screen">
-                    </div>
-                    <div class="mb-3">
-                        <label for="notes" class="form-label">Notities</label>
-                        <textarea class="form-control" id="notes" name="notes"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>

@@ -26,7 +26,7 @@ app.config['DEBUG'] = True  # Enable debug mode
 def showData():
     conn = create_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM kamerdata")
+    cursor.execute("SELECT * FROM kamers")
     data = cursor.fetchall()
     data = replace_none_with_empty(data)
     cursor.close()
@@ -40,23 +40,24 @@ def edit_room(room_id):
     cursor = conn.cursor(dictionary=True)
     
     if request.method == 'POST':
-        room_number = request.form['room_number']
-        capacity = request.form['capacity']
-        status = request.form['status']
-        screen = request.form['screen']
-        notes = request.form['notes']
+        kamernummer = request.form['kamernummer']
+        naam = request.form['naam']
+        capaciteit = request.form['capaciteit']
+        tafelopstelling = request.form['tafelopstelling']
+        beeldscherm = request.form['beeldscherm']
+        type = request.form['type']
         
         cursor.execute("""
-            UPDATE kamerdata
-            SET room_number = %s, capacity = %s, status = %s, screen = %s, notes = %s
+            UPDATE kamers
+            SET kamernummer = %s, naam = %s, capaciteit = %s, tafelopstelling = %s, beeldscherm = %s, type = %s
             WHERE id = %s
-        """, (room_number, capacity, status, screen, notes, room_id))
+        """, (kamernummer, naam, capaciteit, tafelopstelling, beeldscherm, type, room_id))
         conn.commit()
         cursor.close()
         conn.close()
         return redirect(url_for('showData'))
     
-    cursor.execute("SELECT * FROM kamerdata WHERE id = %s", (room_id,))
+    cursor.execute("SELECT * FROM kamers WHERE id = %s", (room_id,))
     room = cursor.fetchone()
     room = replace_none_with_empty(room)
     cursor.close()
@@ -67,18 +68,19 @@ def edit_room(room_id):
 @app.route('/add', methods=['GET', 'POST'])
 def add_room():
     if request.method == 'POST':
-        room_number = request.form['room_number']
-        capacity = request.form['capacity']
-        status = request.form['status']
-        screen = request.form['screen']
-        notes = request.form['notes']
+        kamernummer = request.form['kamernummer']
+        naam = request.form['naam']
+        capaciteit = request.form['capaciteit']
+        tafelopstelling = request.form['tafelopstelling']
+        beeldscherm = request.form['beeldscherm']
+        type = request.form['type']
         
         conn = create_connection()
         cursor = conn.cursor()
         cursor.execute("""
-            INSERT INTO kamerdata (room_number, capacity, status, screen, notes)
-            VALUES (%s, %s, %s, %s, %s)
-        """, (room_number, capacity, status, screen, notes))
+            INSERT INTO kamers (kamernummer, naam, capaciteit, tafelopstelling, beeldscherm, type)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (kamernummer, naam, capaciteit, tafelopstelling, beeldscherm, type))
         conn.commit()
         cursor.close()
         conn.close()
@@ -90,7 +92,7 @@ def add_room():
 def delete_room(room_id):
     conn = create_connection()
     cursor = conn.cursor()
-    cursor.execute("DELETE FROM kamerdata WHERE id = %s", (room_id,))
+    cursor.execute("DELETE FROM kamers WHERE id = %s", (room_id,))
     conn.commit()
     cursor.close()
     conn.close()

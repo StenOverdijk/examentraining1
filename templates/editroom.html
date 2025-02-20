@@ -13,30 +13,31 @@
                 <h1 class="mt-5">Edit Kamerdata</h1>
                 <form method="POST">
                     <div class="mb-3">
-                        <label for="room_number" class="form-label">Kamer</label>
-                        <input type="text" class="form-control" id="room_number" name="room_number" value="{{ room.room_number }}" required>
+                        <label for="kamernummer" class="form-label">Kamer Nummer</label>
+                        <input type="text" class="form-control" id="kamernummer" name="kamernummer" value="{{ room.kamernummer }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="capacity" class="form-label">Capacitiet</label>
-                        <input type="number" class="form-control" id="capacity" name="capacity" value="{{ room.capacity }}" required>
+                        <label for="naam" class="form-label">Naam</label>
+                        <input type="text" class="form-control" id="naam" name="naam" value="{{ room.naam }}" required>
                     </div>
                     <div class="mb-3">
-                        <label for="status" class="form-label">Status</label>
-                        <select class="form-control" id="status" name="status">
-                            <option value="" {% if room.status == '' %}selected{% endif %}></option>
-                            <option value="Vrij" {% if room.status == 'Vrij' %}selected{% endif %}>Vrij</option>
-                            <option value="Gereserveerd" {% if room.status == 'Gereserveerd' %}selected{% endif %}>Gereserveerd</option>
-                            <option value="Bezet" {% if room.status == 'Bezet' %}selected{% endif %}>Bezet</option>
-                            <option value="Onbeschikbaar" {% if room.status == 'Onbeschikbaar' %}selected{% endif %}>Onbeschikbaar</option>
+                        <label for="capaciteit" class="form-label">Capacitiet</label>
+                        <input type="number" class="form-control" id="capaciteit" name="capaciteit" value="{{ room.capaciteit }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tafelopstelling" class="form-label">Tafelopstelling</label>
+                        <input type="text" class="form-control" id="tafelopstelling" name="tafelopstelling" value="{{ room.tafelopstelling }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="beeldscherm" class="form-label">Beeldscherm</label>
+                        <input type="text" class="form-control" id="beeldscherm" name="beeldscherm" value="{{ room.beeldscherm }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Type</label>
+                        <select class="form-control" id="type" name="type">
+                            <option value="vergader" {% if room.type == 'vergader' %}selected{% endif %}>Vergader</option>
+                            <option value="kantoor" {% if room.type == 'kantoor' %}selected{% endif %}>Kantoor</option>
                         </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="screen" class="form-label">Beeldscherm</label>
-                        <input type="text" class="form-control" id="screen" name="screen" value="{{ room.screen }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="notes" class="form-label">Notities</label>
-                        <textarea class="form-control" id="notes" name="notes">{{ room.notes }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>
