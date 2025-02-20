@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Rentals Overview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            background-color: #803021;
+            /* Baksteenbruin */
+        }
+
+        .navbar a {
+            color: black;
+        }
+
+        .btn-login {
+            background-color: #08402F;
+            /* Mosgroen */
+            color: white;
+            border-radius: 50px;
+        }
+
+        .btn-logout {
+            background-color: #A37A3C;
+            /* Cognacgeel */
+            color: white;
+            border-radius: 50px;
+        }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .table thead {
+            background-color: #08402F;
+            /* Mosgroen */
+            color: white;
+        }
+
+        .table tbody {
+            background-color: rgba(8, 64, 47, 0.5);
+            /* Mosgroen with 50% opacity */
+            color: white;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Room Rentals</a>
+            <div class="d-flex">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Sem</a>
+                <a href="#" class="nav-link">Sten</a>
+                <a href="#" class="nav-link">Freek</a>
+                <button class="btn btn-login px-4 py-2">Login</button>
+                <button class="btn btn-logout px-4 py-2">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Table with room overview -->
+    <div class="container my-4">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Kamer Nr.</th>
+                    <th scope="col">Naam</th>
+                    <th scope="col">Capaciteit</th>
+                    <th scope="col">Tafelopstelling</th>
+                    <th scope="col">Beeldscherm</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Huurder</th>
+                    <th scope="col">Acties</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic room data will go here -->
+                <!-- Example static row -->
+                <tr>
+                    <td>101</td>
+                    <td>Vergaderzaal A</td>
+                    <td>10</td>
+                    <td>U-vorm</td>
+                    <td>LED 50 inch</td>
+                    <td>vergader</td>
+                    <td>Niet verhuurd</td>
+                    <td>
+                        <button class="btn btn-primary">Bewerken</button>
+                        <button class="btn btn-danger">Verwijderen</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Vergaderzaal B</td>
+                    <td>12</td>
+                    <td>Blok</td>
+                    <td>LCD 42 inch</td>
+                    <td>vergader</td>
+                    <td>Niet verhuurd</td>
+                    <td>
+                        <button class="btn btn-primary">Bewerken</button>
+                        <button class="btn btn-danger">Verwijderen</button>
+                    </td>
+                </tr>
+                <!-- Repeat for each room -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Add any JavaScript functionality here if needed, like table filtering or edit actions
+    </script>
+</body>
+
+</html>

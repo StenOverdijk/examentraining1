@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav class="bg-[#803021] p-4 flex justify-between items-center">
+        <div class="text-white space-x-4">
+            <a href="#" class="text-black">Home</a>
+            <a href="#" class="text-black">Sem</a>
+            <a href="#" class="text-black">Sten</a>
+            <a href="#" class="text-black">Freek</a>
+        </div>
+        <div class="space-x-4">
+            <button class="bg-[#08402F] text-white rounded px-4 py-2">Login</button>
+            <button class="bg-[#A37A3C] text-white rounded px-4 py-2">Logout</button>
+        </div>
+    </nav>
+
+    <form method="POST">
+        <label for="huurder">Huurder</label>
+        <select name="huurder" id="huurder" required>
+            <option value="">Selecteer een huurder</option>
+            {% for huurder in huurders %}
+            <option value="{{ huurder.id }}" {% if huurder.id==kamer.huurder_id %}selected{% endif %}>{{
+                huurder.bedrijfsnaam }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="startdatum">Startdatum</label>
+        <input type="date" name="startdatum" id="startdatum" value="{{ kamer.startdatum }}" required>
+
+        <label for="einddatum">Einddatum</label>
+        <input type="date" name="einddatum" id="einddatum" value="{{ kamer.einddatum }}" required>
+
+        <label for="status">Status</label>
+        <select name="status" id="status" required>
+            <option value="actief" {% if kamer.status=='actief' %}selected{% endif %}>Actief</option>
+            <option value="verlopen" {% if kamer.status=='verlopen' %}selected{% endif %}>Verlopen</option>
+            <option value="opzegging" {% if kamer.status=='opzegging' %}selected{% endif %}>Opzegging</option>
+        </select>
+
+        <button type="submit">Bewerken</button>
+    </form>
+</body>
+
+</html>

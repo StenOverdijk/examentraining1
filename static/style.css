@@ -1,0 +1,13 @@
+body {
+  background-color: #f8f9fa;
+}
+h2 {
+  color: #a37a3c;
+}
+.table-dark {
+  background-color: #803021 !important;
+}
+.btn-danger {
+  background-color: #a37a3c;
+  border: none;
+}
