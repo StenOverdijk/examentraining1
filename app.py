@@ -10,33 +10,33 @@ def kamers_overzicht():
     cursor = conn.cursor(dictionary=True)
 
     cursor.execute("""
-        SELECT k.kamernummer, k.naam, k.capaciteit, k.tafelopstelling, k.beeldscherm, k.type,
+        SELECT k.id, k.kamernummer, k.naam, k.capaciteit, k.tafelopstelling, k.beeldscherm, k.type,
                COALESCE(h.bedrijfsnaam, 'Niet verhuurd') AS huurder,
                c.startdatum, c.einddatum, c.status
         FROM kamers k
         LEFT JOIN contracten c ON k.id = c.kamer_id AND c.status = 'actief'
         LEFT JOIN huurders h ON c.huurder_id = h.id
+        WHERE k.verwijderd = 0  -- Zorg ervoor dat soft-deleted kamers niet getoond worden
         ORDER BY k.kamernummer;
     """)
     
     kamers = cursor.fetchall()
-    
     cursor.close()
     conn.close()
-
+    
     return render_template("index.html", kamers=kamers)
 
 
-# Soft delete functie
+# Soft delete functie voor een contract
 @app.route("/verwijderen/<int:kamer_id>")
 def verwijder_contract(kamer_id):
     conn = get_db_connection()
     cursor = conn.cursor()
     
     cursor.execute("""
-        UPDATE contracten 
-        SET status = 'verlopen', verwijderd = 1
-        WHERE kamer_id = %s AND status = 'actief'
+        UPDATE kamers 
+        SET verwijderd = 1
+        WHERE id = %s
     """, (kamer_id,))
     
     conn.commit()
@@ -45,6 +45,8 @@ def verwijder_contract(kamer_id):
     
     return redirect(url_for("kamers_overzicht"))
 
+
+# Bewerken van een kamer
 @app.route("/bewerken/<int:kamer_id>", methods=["GET", "POST"])
 def bewerken(kamer_id):
     conn = get_db_connection()
@@ -52,7 +54,7 @@ def bewerken(kamer_id):
     
     # Haal kamergegevens op
     cursor.execute("""
-        SELECT k.kamernummer, k.naam, k.capaciteit, k.tafelopstelling, k.beeldscherm, k.type,
+        SELECT k.id, k.kamernummer, k.naam, k.capaciteit, k.tafelopstelling, k.beeldscherm, k.type,
                c.startdatum, c.einddatum, c.status, h.id AS huurder_id, h.bedrijfsnaam
         FROM kamers k
         LEFT JOIN contracten c ON k.id = c.kamer_id AND c.status = 'actief'
