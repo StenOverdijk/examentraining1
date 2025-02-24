@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamer bewerken</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Kamer bewerken</h2>
+
+        <!-- Pop-up waarschuwing als er een actieve reservering is -->
+        {% if actieve_reservering %}
+        <div class="alert alert-warning" role="alert">
+            <strong>Let op!</strong> Deze kamer heeft een actieve reservering en kan mogelijk niet gewijzigd worden.
+        </div>
+        {% endif %}
+
+        <form action="{{ url_for('kamer_bewerken', id=kamer[0]) }}" method="POST">
+            <div class="mb-3">
+                <label for="kamernummer" class="form-label">Kamernummer</label>
+                <input type="text" class="form-control" id="kamernummer" name="kamernummer" value="{{ kamer[1] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="naam" class="form-label">Naam</label>
+                <input type="text" class="form-control" id="naam" name="naam" value="{{ kamer[2] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="capaciteit" class="form-label">Capaciteit</label>
+                <input type="number" class="form-control" id="capaciteit" name="capaciteit" value="{{ kamer[3] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="tafelopstelling" class="form-label">Tafelopstelling</label>
+                <select class="form-select" id="tafelopstelling" name="tafelopstelling">
+                    <option value="U-vorm" {% if kamer[4] == 'U-vorm' %}selected{% endif %}>U-vorm</option>
+                    <option value="Ovaal" {% if kamer[4] == 'Ovaal' %}selected{% endif %}>Ovaal</option>
+                    <option value="Klaslokaal" {% if kamer[4] == 'Klaslokaal' %}selected{% endif %}>Klaslokaal</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="beeldscherm" class="form-label">Beeldscherm</label>
+                <select class="form-select" id="beeldscherm" name="beeldscherm">
+                    <option value="Geen" {% if kamer[5] == 'Geen' %}selected{% endif %}>Geen</option>
+                    <option value="Projector" {% if kamer[5] == 'Projector' %}selected{% endif %}>Projector</option>
+                    <option value="Tv" {% if kamer[5] == 'Tv' %}selected{% endif %}>Tv</option>
+                    <option value="Digibord" {% if kamer[5] == 'Digibord' %}selected{% endif %}>Digibord</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="type" class="form-label">Type Kamer</label>
+                <select class="form-select" id="type" name="type">
+                    <option value="Vergaderkamer" {% if kamer[6] == 'vergaderkamer' %}selected{% endif %}>Vergaderzaal</option>
+                    <option value="Kantoor" {% if kamer[6] == 'kantoor' %}selected{% endif %}>Kantoor</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Opslaan</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Annuleren</a>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
